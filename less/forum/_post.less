@@ -1,8 +1,8 @@
 // ── Posts ────────────────────────────────────────────────────
 
 .Post {
-    background: @post-bg;
-    border: 1px solid @border-color;
+    background: @aurora-card;
+    border: 1px solid @aurora-border;
     border-radius: @border-radius;
     padding: 16px 20px;
     margin-bottom: 10px;
@@ -15,34 +15,34 @@
 
     .PostUser-name a {
         font-weight: 600;
-        color: @heading-color;
-        &:hover { color: @primary-base; }
+        color: @aurora-text;
+        &:hover { color: @aurora-accent; }
     }
 
     .Post-body {
         font-size: 14px;
         line-height: 1.7;
-        color: @text-color;
+        color: @aurora-text;
 
         code {
-            background: @control-bg;
-            border: 1px solid @border-color;
-            border-radius: @border-radius-xs;
+            background: @aurora-surface;
+            border: 1px solid @aurora-border;
+            border-radius: 8px;
             padding: 1px 5px;
             font-size: 13px;
         }
 
         blockquote {
-            border-left: 3px solid @primary-light;
+            border-left: 3px solid @aurora-accent-light;
             margin: 12px 0;
             padding: 8px 14px;
-            background: @primary-xxlight;
-            border-radius: 0 @border-radius-xs @border-radius-xs 0;
-            color: @muted-color;
+            background: @aurora-accent-xxlight;
+            border-radius: 0 8px 8px 0;
+            color: @aurora-muted;
         }
 
         a {
-            color: @primary-base;
+            color: @aurora-accent;
             text-decoration: none;
             &:hover { text-decoration: underline; }
         }
@@ -55,33 +55,34 @@
     }
 
     .PostAction {
-        background: @control-bg;
+        background: @aurora-surface;
         border: none;
-        border-radius: @border-radius-xs;
+        border-radius: 8px;
         padding: 4px 10px;
         font-size: 12px;
         font-weight: 600;
-        color: @muted-color;
+        color: @aurora-muted;
         cursor: pointer;
         transition: background 0.15s, color 0.15s;
 
         &:hover {
-            background: @primary-xlight;
-            color: @primary-xdark;
+            background: @aurora-accent-xlight;
+            color: @aurora-accent-xdark;
         }
 
         &.active,
         &--liked {
-            background: @primary-xlight;
-            color: @primary-dark;
+            background: @aurora-accent-xlight;
+            color: @aurora-accent-dark;
         }
     }
 }
 
 .EventPost {
     background: transparent;
-    border: 1px dashed @border-color;
+    border: 1px dashed @aurora-border;
+    border-radius: @border-radius;
     padding: 10px 16px;
     font-size: 13px;
-    color: @muted-color;
+    color: @aurora-muted;
 }

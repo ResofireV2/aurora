@@ -1,1 +1,1 @@
-import './src/forum/index.js';
+export * from './src/forum/index';

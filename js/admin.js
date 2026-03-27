@@ -1,1 +1,1 @@
-import './src/admin/index.js';
+export * from './src/admin/index';

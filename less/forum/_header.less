@@ -1,39 +1,39 @@
 // ── Header ───────────────────────────────────────────────────
 
 .Header {
-    background: @header-bg;
-    border-bottom: 1px solid @border-color;
+    background: @aurora-card;
+    border-bottom: 1px solid @aurora-border;
     box-shadow: none;
-    height: @header-height;
 
     &-title a {
         font-weight: 700;
-        color: @heading-color;
         font-size: 17px;
         letter-spacing: -0.01em;
-        &:hover { color: @primary-base; text-decoration: none; }
+        color: @aurora-text;
+        &:hover { color: @aurora-accent; text-decoration: none; }
     }
 }
 
+// Search bar → pill shape
 .Search-input .FormControl {
     border-radius: 50px;
-    background: @control-bg;
-    border-color: @border-color;
+    background: @aurora-surface;
+    border-color: @aurora-border;
     height: 36px;
     padding: 0 16px;
     font-size: 13px;
 
     &:focus {
-        background: #FFFFFF;
-        border-color: @primary-mid;
-        box-shadow: 0 0 0 3px @primary-xlight;
+        background: @aurora-card;
+        border-color: @aurora-accent-mid;
+        box-shadow: 0 0 0 3px @aurora-accent-xlight;
     }
 }
 
+// Primary button — colour comes from core via @primary-color
 .Button--primary {
     border-radius: 50px;
     font-weight: 600;
-    letter-spacing: 0.01em;
 }
 
 .Header-secondary .Button {

@@ -1,7 +1,7 @@
 // ── Tags (flarum/tags extension) ─────────────────────────────
 //
-// Individual tag colors are set per-tag in the admin panel.
-// These rules handle shape, size, and the uncolored fallback.
+// Per-tag colours are set inline by Flarum as style attributes.
+// These rules handle shape and the uncoloured fallback only.
 
 .TagLabel {
     border-radius: 50px;
@@ -12,10 +12,10 @@
     align-items: center;
     gap: 5px;
 
-    // Uncolored fallback — uses derived primary tints
+    // Fallback for tags with no custom colour set
     &:not([style*="background"]) {
-        background: @primary-xlight;
-        color: @primary-xdark;
+        background: @aurora-accent-xlight;
+        color: @aurora-accent-xdark;
     }
 
     &-dot {
@@ -26,28 +26,26 @@
     }
 }
 
-// Tag filter pills in the discussion list header
+// Category filter pills
 .TagsNav .Button {
     border-radius: 50px;
     font-size: 12px;
     font-weight: 600;
     padding: 5px 14px;
-    border: 1px solid @border-color;
+    border: 1px solid @aurora-border;
     background: transparent;
-    color: @muted-color;
+    color: @aurora-muted;
     transition: all 0.15s;
 
     &:hover,
     &.active {
-        background: @primary-xlight;
-        border-color: @primary-light;
-        color: @primary-xdark;
+        background: @aurora-accent-xlight;
+        border-color: @aurora-accent-light;
+        color: @aurora-accent-xdark;
     }
 }
 
-// Tag hero page header
 .TagHero {
-    background: @hero-bg;
-    border-bottom: 1px solid @border-color;
-    border-radius: 0 0 @border-radius @border-radius;
+    background: @aurora-surface;
+    border-bottom: 1px solid @aurora-border;
 }

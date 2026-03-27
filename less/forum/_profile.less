@@ -2,14 +2,11 @@
 
 .UserPage {
 
-    &-hero {
-        background: @hero-bg;
-        border-bottom: 1px solid @border-color;
+    &-hero,
+    .Hero {
+        background: @aurora-surface;
+        border-bottom: 1px solid @aurora-border;
         padding: 28px 24px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
     }
 
     .Avatar--large,
@@ -17,50 +14,10 @@
         width: 72px;
         height: 72px;
         border-radius: 50%;
-        border: 3px solid #FFFFFF;
-        box-shadow: 0 0 0 1px @border-color;
+        border: 3px solid @aurora-card;
+        box-shadow: 0 0 0 1px @aurora-border;
         font-size: 26px;
         font-weight: 700;
-    }
-
-    .UserPage-name {
-        font-size: 20px;
-        font-weight: 700;
-        color: @heading-color;
-        margin-top: 10px;
-        margin-bottom: 2px;
-    }
-
-    .UserPage-username {
-        font-size: 13px;
-        color: @muted-color;
-        margin-bottom: 10px;
-    }
-
-    .UserPage-stats {
-        display: flex;
-        gap: 24px;
-        margin-top: 12px;
-
-        .UserPage-stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            &-value {
-                font-size: 18px;
-                font-weight: 700;
-                color: @heading-color;
-            }
-
-            &-label {
-                font-size: 10px;
-                font-weight: 600;
-                color: @muted-color;
-                text-transform: uppercase;
-                letter-spacing: 0.06em;
-            }
-        }
     }
 
     .Button--follow {
@@ -71,12 +28,12 @@
 }
 
 .UserPage-badges .Badge {
-    border-radius: @border-radius-xs;
+    border-radius: 8px;
     padding: 4px 10px;
     font-size: 11px;
     font-weight: 600;
-    background: @primary-xlight;
-    color: @primary-xdark;
+    background: @aurora-accent-xlight;
+    color: @aurora-accent-xdark;
     display: inline-flex;
     align-items: center;
     gap: 4px;

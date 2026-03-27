@@ -1,13 +1,12 @@
 // ── Composer ─────────────────────────────────────────────────
 
 .Composer {
-    background: @composer-bg;
-    border-top: 1px solid @border-color;
-    border-radius: @composer-border-radius @composer-border-radius 0 0;
-    box-shadow: 0 -4px 24px rgba(28, 27, 34, 0.06);
+    background: @aurora-card;
+    border-top: 1px solid @aurora-border;
+    border-radius: @border-radius @border-radius 0 0;
 
     &-handle {
-        background: @border-color;
+        background: @aurora-border;
         border-radius: 50px;
         width: 40px;
         height: 4px;
@@ -15,17 +14,17 @@
     }
 
     &-header {
-        border-bottom: 1px solid @border-color;
+        border-bottom: 1px solid @aurora-border;
         padding: 10px 16px;
 
         .Composer-title .FormControl {
             font-size: 16px;
             font-weight: 600;
-            color: @heading-color;
+            color: @aurora-text;
             border: none;
             background: transparent;
             padding: 0;
-            &::placeholder { color: @muted-color; font-weight: 400; }
+            &::placeholder { color: @aurora-muted; font-weight: 400; }
         }
     }
 
@@ -39,7 +38,7 @@
     }
 
     &-footer {
-        border-top: 1px solid @border-color;
+        border-top: 1px solid @aurora-border;
         padding: 8px 12px;
         display: flex;
         align-items: center;
@@ -52,12 +51,12 @@
         }
 
         .TextEditorButton {
-            border-radius: @border-radius-xs;
+            border-radius: 8px;
             padding: 5px 8px;
-            color: @muted-color;
+            color: @aurora-muted;
             &:hover {
-                background: @control-bg;
-                color: @primary-base;
+                background: @aurora-surface;
+                color: @aurora-accent;
             }
         }
     }

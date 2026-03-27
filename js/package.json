@@ -1,15 +1,14 @@
 {
+    "private": true,
     "name": "@resofire/aurora",
     "version": "1.0.0",
-    "description": "Aurora Cream theme for Flarum 2.x",
-    "private": true,
     "scripts": {
-        "dev":   "webpack --config webpack.config.js --mode development --watch",
-        "build": "webpack --config webpack.config.js --mode production"
+        "dev": "webpack --mode development --watch",
+        "build": "webpack --mode production"
     },
     "devDependencies": {
         "flarum-webpack-config": "^3.0.0",
-        "webpack":               "^5.0.0",
-        "webpack-cli":           "^5.0.0"
+        "webpack": "^5.0.0",
+        "webpack-cli": "^4.0.0"
     }
 }

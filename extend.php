@@ -1,7 +1,6 @@
 <?php
 
 use Flarum\Extend;
-use Flarum\Frontend\Document;
 
 return [
     (new Extend\Frontend('forum'))
@@ -12,15 +11,21 @@ return [
         ->css(__DIR__ . '/less/admin.less')
         ->js(__DIR__ . '/js/dist/admin.js'),
 
-    // Expose admin-set surface settings as LESS variables so
-    // the stylesheet can reference them as @aurora-body-bg etc.
-    // Accent colors come from core's @primary-color — no need
-    // to re-expose those here.
+    // Register default values for settings that have not been saved yet.
+    // Extend\Settings::default() was confirmed in Flarum 2.x Settings.php source.
     (new Extend\Settings)
-        ->serializeToForum('auroraCream.bodyBg',     'resofire-aurora.body_bg',      'strval', '#FBF8F3')
-        ->serializeToForum('auroraCream.controlBg',  'resofire-aurora.control_bg',   'strval', '#F5F1EA')
-        ->serializeToForum('auroraCream.radius',     'resofire-aurora.border_radius','strval', '18')
-        ->serializeToForum('auroraCream.fontUrl',    'resofire-aurora.custom_font_url', 'strval', ''),
+        ->default('resofire-aurora.body_bg',         '#FBF8F3')
+        ->default('resofire-aurora.control_bg',      '#F5F1EA')
+        ->default('resofire-aurora.border_radius',   '18')
+        ->default('resofire-aurora.custom_font_url', ''),
+
+    // Serialize surface settings to the forum payload so JS can read them.
+    // Two-arg form: Flarum reads the value (including default above) automatically.
+    (new Extend\Settings)
+        ->serializeToForum('auroraCream.bodyBg',    'resofire-aurora.body_bg')
+        ->serializeToForum('auroraCream.controlBg', 'resofire-aurora.control_bg')
+        ->serializeToForum('auroraCream.radius',    'resofire-aurora.border_radius')
+        ->serializeToForum('auroraCream.fontUrl',   'resofire-aurora.custom_font_url'),
 
     new Extend\Locales(__DIR__ . '/locale'),
 ];

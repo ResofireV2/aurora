@@ -1,45 +1,49 @@
 // ── Aurora Cream — Admin Panel Styles ────────────────────────
-//  Lighter touch; admin UI gets the same rounded surfaces and
-//  typography. Accent tints derived from @primary-color just
-//  like the forum stylesheet.
+// Admin LESS compiles independently from forum LESS.
+// @primary-color and @secondary-color are available here too.
+// We redeclare the aurora accent tints since _variables.less
+// is a forum-only partial.
 
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
 
-// Derived tints (same definitions as forum/_variables.less —
-// admin LESS compiles independently so we redeclare them here)
-@primary-xxlight:  mix(white, @primary-color, 92%);
-@primary-xlight:   mix(white, @primary-color, 80%);
-@primary-light:    mix(white, @primary-color, 60%);
-@primary-mid:      mix(white, @primary-color, 20%);
-@primary-base:     @primary-color;
-@primary-dark:     darken(@primary-color, 8%);
-@primary-xdark:    darken(@primary-color, 18%);
+// Aurora accent tints (same derivation as forum/_variables.less)
+@aurora-accent-xlight:  mix(white, @primary-color, 80%);
+@aurora-accent-mid:     mix(white, @primary-color, 20%);
+@aurora-accent-xdark:   darken(@primary-color, 18%);
+
+// Aurora admin surfaces
+@aurora-admin-page-bg:  #F5F2ED;
+@aurora-admin-card:     #FFFFFF;
+@aurora-admin-border:   #EDE9E1;
+@aurora-admin-surface:  #F5F1EA;
+@aurora-admin-text:     #1C1B22;
+@aurora-admin-muted:    #6B6880;
 
 body.App--admin {
     font-family: 'Sora', system-ui, sans-serif;
-    background: #F5F2ED;
+    background: @aurora-admin-page-bg;
 }
 
 .AdminNav {
-    background: #FFFFFF;
-    border-right: 1px solid #EDE9E1;
+    background: @aurora-admin-card;
+    border-right: 1px solid @aurora-admin-border;
 
     .AdminNav-item a {
         border-radius: 10px;
         font-weight: 500;
-        color: #6B6880;
+        color: @aurora-admin-muted;
         transition: background 0.15s, color 0.15s;
 
-        &:hover  { background: #F5F1EA; color: #1C1B22; }
-        &.active { background: @primary-xlight; color: @primary-xdark; }
+        &:hover  { background: @aurora-admin-surface; color: @aurora-admin-text; }
+        &.active { background: @aurora-accent-xlight; color: @aurora-accent-xdark; }
     }
 }
 
 .AdminPage {
     .Form-group,
     .ExtensionPage-settings .Form-group {
-        background: #FFFFFF;
-        border: 1px solid #EDE9E1;
+        background: @aurora-admin-card;
+        border: 1px solid @aurora-admin-border;
         border-radius: 16px;
         padding: 16px 20px;
         margin-bottom: 10px;
@@ -50,19 +54,19 @@ body.App--admin {
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.06em;
-        color: #6B6880;
+        color: @aurora-admin-muted;
     }
 
     .FormControl {
         border-radius: 10px;
-        border-color: #EDE9E1;
-        background: #F5F1EA;
+        border-color: @aurora-admin-border;
+        background: @aurora-admin-surface;
         font-size: 14px;
 
         &:focus {
-            background: #FFFFFF;
-            border-color: @primary-mid;
-            box-shadow: 0 0 0 3px @primary-xlight;
+            background: @aurora-admin-card;
+            border-color: @aurora-accent-mid;
+            box-shadow: 0 0 0 3px @aurora-accent-xlight;
         }
     }
 

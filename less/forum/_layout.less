@@ -1,22 +1,18 @@
 // ── Layout ───────────────────────────────────────────────────
+// Use var() for core theme-aware values, @aurora-* for our own.
 
 body {
-    background: @body-bg;
-    font-family: @font-family;
-    font-size: @font-size;
-    color: @text-color;
+    background: @aurora-page-bg;
 }
 
 .App {
-    background: @body-bg;
+    background: @aurora-page-bg;
 }
 
-// Rounded content pane on desktop
-.Pane {
-    background: @body-bg;
+.App-content {
+    background: @aurora-page-bg;
 }
 
-// Page-level wrapper breathing room
 .container {
     padding-left: 20px;
     padding-right: 20px;

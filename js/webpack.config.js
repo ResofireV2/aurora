@@ -1,5 +1,1 @@
-const config = require('flarum-webpack-config');
-
-module.exports = [
-    config({ useExtensions: [] }),
-];
+module.exports = require('flarum-webpack-config')();

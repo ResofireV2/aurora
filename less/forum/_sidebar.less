@@ -1,29 +1,29 @@
-// ── Sidebar / Nav Panel ──────────────────────────────────────
+// ── Sidebar / Nav ────────────────────────────────────────────
 
 .NavDrawer,
 .Drawer {
-    background: @sidebar-bg;
-    border-right: 1px solid @border-color;
+    background: @aurora-surface;
+    border-right: 1px solid @aurora-border;
 }
 
 .SelectTagsModal-tag,
 .NavItem {
-    border-radius: @border-radius-sm;
+    border-radius: 12px;
     padding: 8px 10px;
     font-weight: 500;
-    color: @muted-color;
+    color: @aurora-muted;
     transition: background 0.15s, color 0.15s;
 
     &:hover {
-        background: @border-color;
-        color: @heading-color;
+        background: @aurora-border;
+        color: @aurora-text;
         text-decoration: none;
     }
 
     &.active,
     &.active:hover {
-        background: @primary-xlight;
-        color: @primary-xdark;
+        background: @aurora-accent-xlight;
+        color: @aurora-accent-xdark;
     }
 }
 
@@ -32,12 +32,6 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: @muted-color;
+    color: @aurora-muted;
     padding: 12px 10px 4px;
-}
-
-.TagLabel--colored {
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
 }
