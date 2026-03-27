@@ -22,16 +22,10 @@
     }
 }
 
-// Unread count badge
-.DiscussionListItem-count {
-    .unread & {
-        background: @aurora-accent;
-        color: #fff;
-        border-radius: 50px;
-        font-weight: 600;
-        padding: 2px 8px;
-    }
-}
+// Count styling is handled correctly by core at each breakpoint.
+// On tablet-up: plain icon+number, bold+primary-color when unread.
+// On phone: pill badge, primary-color background when unread.
+// We let core handle this and only ensure our @border-radius applies.
 
 // Thread title
 .DiscussionListItem-title {
