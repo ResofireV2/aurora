@@ -35,7 +35,19 @@
     background: @aurora-card;
     border: 1px solid @aurora-border;
     border-radius: 16px;
-    overflow: hidden;
+    // No overflow:hidden — that clips absolutely-positioned dropdown menus.
+    // Instead we clip corners per-child below.
+}
+
+// Clip the top corners on the actions row
+.aurora-sidebar-actions {
+    border-radius: 16px 16px 0 0;
+}
+
+// Clip the bottom corners on the session button
+.aurora-sidebar-user > .SessionDropdown > .Button,
+.aurora-sidebar-user .Dropdown.SessionDropdown > .Button {
+    border-radius: 0 0 16px 16px !important;
 }
 
 // Notifications + flags row at the top
@@ -78,7 +90,6 @@
         align-items: center;
         gap: 10px;
         padding: 10px 14px;
-        border-radius: 0;
         text-align: left;
         color: @aurora-text;
         font-weight: 600;
