@@ -1,37 +1,29 @@
-// ── Sidebar / Nav ────────────────────────────────────────────
+// ── Sidebar nav (sideNav) ────────────────────────────────────
 
-.NavDrawer,
-.Drawer {
-    background: @aurora-surface;
-    border-right: 1px solid @aurora-border;
-}
-
-.SelectTagsModal-tag,
-.NavItem {
+// Sidebar item links — core uses .sideNav .Dropdown-menu > li > a
+.sideNav .Dropdown-menu > li > a {
     border-radius: 12px;
     padding: 8px 10px;
     font-weight: 500;
-    color: @aurora-muted;
+    color: @aurora-muted !important;
     transition: background 0.15s, color 0.15s;
 
     &:hover {
-        background: @aurora-border;
-        color: @aurora-text;
-        text-decoration: none;
-    }
-
-    &.active,
-    &.active:hover {
-        background: @aurora-accent-xlight;
-        color: @aurora-accent-xdark;
+        background: @aurora-border !important;
+        color: @aurora-text !important;
     }
 }
 
-.NavItem-separator {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: @aurora-muted;
-    padding: 12px 10px 4px;
+// Active sidebar item
+.sideNav .Dropdown-menu > li.active > a {
+    background: @aurora-accent-xlight !important;
+    color: @aurora-accent-xdark !important;
+    font-weight: 600;
+}
+
+// Sidebar on desktop — background surface
+@media @desktop-up {
+    .sideNav {
+        // background is inherited from App which we set to @aurora-page-bg
+    }
 }

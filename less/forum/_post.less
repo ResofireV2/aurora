@@ -1,88 +1,30 @@
 // ── Posts ────────────────────────────────────────────────────
 
 .Post {
-    background: @aurora-card;
-    border: 1px solid @aurora-border;
     border-radius: @border-radius;
-    padding: 16px 20px;
-    margin-bottom: 10px;
+}
 
-    .Avatar {
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-    }
-
-    .PostUser-name a {
-        font-weight: 600;
-        color: @aurora-text;
-        &:hover { color: @aurora-accent; }
-    }
-
-    .Post-body {
-        font-size: 14px;
-        line-height: 1.7;
-        color: @aurora-text;
-
-        code {
-            background: @aurora-surface;
-            border: 1px solid @aurora-border;
-            border-radius: 8px;
-            padding: 1px 5px;
-            font-size: 13px;
-        }
-
-        blockquote {
-            border-left: 3px solid @aurora-accent-light;
-            margin: 12px 0;
-            padding: 8px 14px;
-            background: @aurora-accent-xxlight;
-            border-radius: 0 8px 8px 0;
-            color: @aurora-muted;
-        }
-
-        a {
-            color: @aurora-accent;
-            text-decoration: none;
-            &:hover { text-decoration: underline; }
-        }
-    }
-
-    .Post-actions {
-        display: flex;
-        gap: 6px;
-        margin-top: 10px;
-    }
-
-    .PostAction {
-        background: @aurora-surface;
-        border: none;
-        border-radius: 8px;
-        padding: 4px 10px;
-        font-size: 12px;
-        font-weight: 600;
+// Post body links — core already handles colours via var(--link-color)
+// blockquotes
+.Post-body {
+    blockquote {
+        border-radius: @border-radius;
+        background: @aurora-accent-xxlight;
+        border-left: 3px solid @aurora-accent-light;
+        border-top: none;
+        border-bottom: none;
         color: @aurora-muted;
-        cursor: pointer;
-        transition: background 0.15s, color 0.15s;
+        padding: 8px 15px;
+    }
 
-        &:hover {
-            background: @aurora-accent-xlight;
-            color: @aurora-accent-xdark;
-        }
-
-        &.active,
-        &--liked {
-            background: @aurora-accent-xlight;
-            color: @aurora-accent-dark;
-        }
+    code {
+        background: @aurora-surface;
+        border-radius: 6px;
     }
 }
 
-.EventPost {
-    background: transparent;
-    border: 1px dashed @aurora-border;
+// Reply placeholder
+.ReplyPlaceholder {
     border-radius: @border-radius;
-    padding: 10px 16px;
-    font-size: 13px;
-    color: @aurora-muted;
+    border-color: @aurora-border;
 }

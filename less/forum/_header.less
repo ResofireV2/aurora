@@ -1,42 +1,30 @@
 // ── Header ───────────────────────────────────────────────────
 
-.Header {
-    background: @aurora-card;
-    border-bottom: 1px solid @aurora-border;
-    box-shadow: none;
-
-    &-title a {
-        font-weight: 700;
-        font-size: 17px;
-        letter-spacing: -0.01em;
-        color: @aurora-text;
-        &:hover { color: @aurora-accent; text-decoration: none; }
+@media @tablet-up {
+    .App-header {
+        background: @aurora-card !important;
+        border-bottom: 1px solid @aurora-border;
+        box-shadow: none !important;
     }
 }
 
-// Search bar → pill shape
-.Search-input .FormControl {
+// Forum title
+.Header-title a,
+.Header-title {
+    color: @aurora-text !important;
+    &:hover { color: @aurora-accent; text-decoration: none; }
+}
+
+// Search input
+.Search-input .FormControl,
+.SearchModal-input {
     border-radius: 50px;
     background: @aurora-surface;
     border-color: @aurora-border;
-    height: 36px;
-    padding: 0 16px;
-    font-size: 13px;
-
-    &:focus {
-        background: @aurora-card;
-        border-color: @aurora-accent-mid;
-        box-shadow: 0 0 0 3px @aurora-accent-xlight;
-    }
 }
 
-// Primary button — colour comes from core via @primary-color
+// Primary CTA button
 .Button--primary {
     border-radius: 50px;
     font-weight: 600;
-}
-
-.Header-secondary .Button {
-    border-radius: 10px;
-    font-weight: 500;
 }

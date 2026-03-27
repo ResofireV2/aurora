@@ -1,62 +1,43 @@
 // ── Modals ───────────────────────────────────────────────────
 
-.Modal-dialog {
-    border-radius: 24px;
-    border: 1px solid @aurora-border;
-    overflow: hidden;
-    background: @aurora-card;
-}
-
-.Modal-header {
-    background: @aurora-surface;
-    border-bottom: 1px solid @aurora-border;
-    padding: 14px 20px;
-    font-size: 15px;
-    font-weight: 700;
-    color: @aurora-text;
-
-    .Button--icon {
-        border-radius: 10px;
-        color: @aurora-muted;
-        &:hover { background: @aurora-border; color: @aurora-text; }
-    }
-}
-
-.Modal-body {
-    padding: 20px;
-
-    .Form-group label {
-        font-size: 12px;
-        font-weight: 600;
-        color: @aurora-muted;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 6px;
+@media @tablet-up {
+    .Modal {
+        border-radius: 20px;
+        overflow: hidden;
     }
 
-    .FormControl {
-        border-radius: 12px;
-        border-color: @aurora-border;
+    .Modal-content {
+        border-radius: 20px;
+        background: @aurora-card;
+    }
+
+    .Modal-header {
         background: @aurora-surface;
-        height: 40px;
-        font-size: 14px;
+        border-bottom: 1px solid @aurora-border;
+        padding: 20px 25px;
+    }
 
-        &:focus {
-            border-color: @aurora-accent-mid;
-            box-shadow: 0 0 0 3px @aurora-accent-xlight;
-            background: @aurora-card;
+    .Modal-body {
+        background: @aurora-card;
+        color: @aurora-text;
+
+        .FormControl {
+            border-radius: 12px;
+            border-color: @aurora-border;
+
+            &:focus {
+                border-color: @aurora-accent-mid;
+                box-shadow: 0 0 0 3px @aurora-accent-xlight;
+            }
         }
     }
-}
 
-.Modal-footer {
-    border-top: 1px solid @aurora-border;
-    padding: 12px 20px;
-    background: @aurora-surface;
+    .Modal-footer {
+        background: @aurora-surface;
+        border-top: 1px solid @aurora-border;
 
-    .Button--primary {
-        border-radius: 50px;
-        font-weight: 600;
-        padding: 8px 22px;
+        .Button--primary {
+            border-radius: 50px;
+        }
     }
 }

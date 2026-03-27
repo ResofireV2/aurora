@@ -1,63 +1,29 @@
 // ── Composer ─────────────────────────────────────────────────
 
-.Composer {
-    background: @aurora-card;
-    border-top: 1px solid @aurora-border;
-    border-radius: @border-radius @border-radius 0 0;
+@media @tablet-up {
+    .Composer {
+        border-radius: @border-radius @border-radius 0 0;
+        background: @aurora-card;
 
-    &-handle {
+        &.active, &.fullScreen {
+            background: @aurora-card;
+        }
+
+        &.active:not(.fullScreen) {
+            box-shadow: 0 0 0 2px @aurora-accent, 0 2px 6px rgba(0,0,0,0.1);
+        }
+    }
+
+    .Composer-handle {
         background: @aurora-border;
         border-radius: 50px;
         width: 40px;
         height: 4px;
-        margin: 8px auto 0;
+        margin: 6px auto -10px;
     }
+}
 
-    &-header {
-        border-bottom: 1px solid @aurora-border;
-        padding: 10px 16px;
-
-        .Composer-title .FormControl {
-            font-size: 16px;
-            font-weight: 600;
-            color: @aurora-text;
-            border: none;
-            background: transparent;
-            padding: 0;
-            &::placeholder { color: @aurora-muted; font-weight: 400; }
-        }
-    }
-
-    &-body {
-        .TextEditor-editorContainer {
-            min-height: 120px;
-            font-size: 14px;
-            line-height: 1.7;
-            padding: 12px 16px;
-        }
-    }
-
-    &-footer {
-        border-top: 1px solid @aurora-border;
-        padding: 8px 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        .Button--primary {
-            border-radius: 50px;
-            padding: 8px 22px;
-            font-weight: 600;
-        }
-
-        .TextEditorButton {
-            border-radius: 8px;
-            padding: 5px 8px;
-            color: @aurora-muted;
-            &:hover {
-                background: @aurora-surface;
-                color: @aurora-accent;
-            }
-        }
-    }
+.ComposerBody-header h3 input {
+    font-size: 16px;
+    font-weight: 600;
 }
