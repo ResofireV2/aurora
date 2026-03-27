@@ -1,33 +1,77 @@
-// ── Discussion list ──────────────────────────────────────────
+// ── Discussion List ──────────────────────────────────────────
 
-// Each row — core uses margin/padding, we add card style
+// ── Option A: Bold left accent stripe ────────────────────────
+// Each row has --aurora-tag-color set via JS from the first tag.
+// We use ::before for the stripe and override core's hover/padding.
+
 @media @tablet-up {
     .DiscussionListItem {
+        position: relative;
         background: @aurora-card;
         border: 1px solid @aurora-border;
         border-radius: @border-radius;
         margin-bottom: 6px;
         margin-left: 0;
         margin-right: 0;
-        padding-right: 15px;
+        overflow: hidden; // clip the ::before stripe to border-radius
+        transition: border-color 0.15s, box-shadow 0.15s;
 
         &:hover {
-            background: @aurora-accent-xxlight;
-            border-color: @aurora-accent-light;
+            background: @aurora-card;
+            border-color: var(--aurora-tag-color, @aurora-accent-light);
+            box-shadow: 4px 0 0 0 var(--aurora-tag-color, @aurora-accent) inset;
+        }
+
+        // The accent stripe — left edge, full height
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--aurora-tag-color, @aurora-accent);
+            border-radius: @border-radius 0 0 @border-radius;
         }
     }
 
+    // Push content right to clear the stripe
     .DiscussionListItem-content {
-        padding: 14px 10px 14px 14px;
+        padding: 14px 16px 14px 20px;
+    }
+
+    // Title
+    .DiscussionListItem-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: @aurora-text;
+    }
+
+    // Meta row (author, time)
+    .DiscussionListItem-info {
+        font-size: 11px;
+        color: @aurora-muted;
+    }
+
+    // Reply count
+    .DiscussionListItem-stats-item {
+        color: @aurora-muted;
+        font-size: 13px;
+    }
+
+    .DiscussionListItem-count {
+        .unread & {
+            color: var(--aurora-tag-color, @aurora-accent);
+            font-weight: 700;
+        }
     }
 }
 
-// Count styling is handled correctly by core at each breakpoint.
-// On tablet-up: plain icon+number, bold+primary-color when unread.
-// On phone: pill badge, primary-color background when unread.
-// We let core handle this and only ensure our @border-radius applies.
-
-// Thread title
-.DiscussionListItem-title {
+// Tags inside the info row — keep them tight and pill-shaped
+.DiscussionListItem-info .TagLabel {
+    border-radius: 50px;
+    font-size: 10px;
     font-weight: 600;
+    padding: 1px 7px;
+    vertical-align: middle;
 }

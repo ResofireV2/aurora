@@ -5,19 +5,27 @@ import SessionDropdown from 'flarum/forum/components/SessionDropdown';
 import NotificationsDropdown from 'flarum/forum/components/NotificationsDropdown';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import IndexSidebar from 'flarum/forum/components/IndexSidebar';
+import DiscussionListItem from 'flarum/forum/components/DiscussionListItem';
 
 export const extenders = [];
 
 app.initializers.add('resofire-aurora', () => {
 
+    // ── Discussion list item: tag-colour accent stripe ────────
+    // Sets --aurora-tag-color on each row so the LESS ::before
+    // stripe can pick it up. Falls back gracefully if no tags.
+    extend(DiscussionListItem.prototype, 'elementAttrs', function (attrs) {
+        const tags = this.attrs.discussion.tags?.();
+        const color = tags && tags.length ? tags[0].color() : null;
+        if (!attrs.style) attrs.style = {};
+        attrs.style['--aurora-tag-color'] = color || 'var(--primary-color)';
+    });
+
     // ── IndexSidebar ─────────────────────────────────────────
     extend(IndexSidebar.prototype, 'items', function (items) {
-
-        // Remove the default new discussion button — it lives in the header now
         items.remove('newDiscussion');
 
         if (app.session.user) {
-            // Resolve FlagsDropdown from the flags extension if it is installed
             const FlagsDropdown = flarum.reg.get('flarum-flags', 'forum/components/FlagsDropdown');
 
             items.add(
@@ -38,12 +46,10 @@ app.initializers.add('resofire-aurora', () => {
 
     // ── HeaderSecondary ───────────────────────────────────────
     extend(HeaderSecondary.prototype, 'items', function (items) {
-        // Remove items that now live in the sidebar
         items.remove('session');
         items.remove('notifications');
-        items.remove('flags');  // added by flarum/flags at priority 15
+        items.remove('flags');
 
-        // Add Start a Discussion as the rightmost header item
         const canStart = app.forum.attribute('canStartDiscussion') || !app.session.user;
 
         items.add(
