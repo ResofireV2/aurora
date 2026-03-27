@@ -1,0 +1,13 @@
+resofire-aurora:
+  admin:
+    settings:
+      custom_font_url_label:    "Custom Google Font URL"
+      custom_font_url_help:     "Paste a full @import URL from Google Fonts to replace Sora."
+      body_bg_label:            "Page background color"
+      body_bg_help:             "Hex value for the warm ivory page background. Default: #FBF8F3"
+      control_bg_label:         "Surface / control background"
+      control_bg_help:          "Hex value for inputs, pills, and sidebar. Default: #F5F1EA"
+      border_radius_label:      "Card border radius (px)"
+      border_radius_help:       "Roundness of thread cards and panels. Default: 18"
+    heading: "Aurora Cream Theme"
+    description: "Customize surface colors and typography. Accent colors are controlled by Flarum's Appearance settings."

@@ -1,0 +1,34 @@
+{
+    "name": "resofire/aurora",
+    "description": "Aurora Cream — a modern, rounded theme for Flarum 2.x",
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "resofire",
+            "email": "hello@resofire.com"
+        }
+    ],
+    "require": {
+        "flarum/core": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Resofire\\Aurora\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Aurora Cream",
+            "category": "theme",
+            "icon": {
+                "name": "fas fa-paint-brush",
+                "backgroundColor": "#FBF8F3",
+                "color": "#8B5CF6"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

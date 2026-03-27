@@ -1,0 +1,87 @@
+// ── Posts ────────────────────────────────────────────────────
+
+.Post {
+    background: @post-bg;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+
+    .Avatar {
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+    }
+
+    .PostUser-name a {
+        font-weight: 600;
+        color: @heading-color;
+        &:hover { color: @primary-base; }
+    }
+
+    .Post-body {
+        font-size: 14px;
+        line-height: 1.7;
+        color: @text-color;
+
+        code {
+            background: @control-bg;
+            border: 1px solid @border-color;
+            border-radius: @border-radius-xs;
+            padding: 1px 5px;
+            font-size: 13px;
+        }
+
+        blockquote {
+            border-left: 3px solid @primary-light;
+            margin: 12px 0;
+            padding: 8px 14px;
+            background: @primary-xxlight;
+            border-radius: 0 @border-radius-xs @border-radius-xs 0;
+            color: @muted-color;
+        }
+
+        a {
+            color: @primary-base;
+            text-decoration: none;
+            &:hover { text-decoration: underline; }
+        }
+    }
+
+    .Post-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .PostAction {
+        background: @control-bg;
+        border: none;
+        border-radius: @border-radius-xs;
+        padding: 4px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        color: @muted-color;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover {
+            background: @primary-xlight;
+            color: @primary-xdark;
+        }
+
+        &.active,
+        &--liked {
+            background: @primary-xlight;
+            color: @primary-dark;
+        }
+    }
+}
+
+.EventPost {
+    background: transparent;
+    border: 1px dashed @border-color;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: @muted-color;
+}

@@ -1,0 +1,96 @@
+// ============================================================
+//  Aurora Cream — Variable Overrides
+//
+//  RULE: Only @primary-color and @secondary-color are provided
+//  by Flarum core (set by admin in Appearance → Colors).
+//  All tints must be derived from those using LESS functions.
+//
+//  Available LESS color functions:
+//    lighten(@color, %)   darken(@color, %)
+//    fade(@color, %)      mix(@a, @b, %)
+//    saturate/desaturate  spin
+//
+//  Safe to hardcode: surfaces, borders, radii, fonts.
+// ============================================================
+// ── Google Font ──────────────────────────────────────────────
+// ── Derived accent tints (from admin-set @primary-color) ─────
+// Use these aliases everywhere instead of numbered scales.
+@primary-xxlight:   mix(white, @primary-color, 92%);  // ~50  badge bg
+@primary-xlight:    mix(white, @primary-color, 80%);  // ~100 pill bg, focus ring
+@primary-light:     mix(white, @primary-color, 60%);  // ~200 hover border
+@primary-mid:       mix(white, @primary-color, 20%);  // ~400 subtle accent
+@primary-base:      @primary-color;                   // ~600 buttons, links
+@primary-dark:      darken(@primary-color, 8%);       // ~700 hover
+@primary-xdark:     darken(@primary-color, 18%);      // ~800 text on light fills
+
+// Secondary tints (for two-tone badge pairs etc.)
+@secondary-xlight:  mix(white, @secondary-color, 80%);
+@secondary-xdark:   darken(@secondary-color, 18%);
+// ── Surfaces (theme-owned, hardcoded) ────────────────────────
+@body-bg:           #FBF8F3;
+@control-bg:        #F5F1EA;
+@hero-bg:           #F5F1EA;
+@overlay-bg:        #FFFFFF;
+@drawer-bg:         #FFFFFF;
+
+// ── Borders ──────────────────────────────────────────────────
+@border-color:      #EDE9E1;
+@border-radius:     18px;
+@border-radius-sm:  12px;
+@border-radius-xs:  8px;
+
+// ── Shadows ──────────────────────────────────────────────────
+@box-shadow:        none;
+@box-shadow-modal:  0 8px 40px rgba(28, 27, 34, 0.10);
+
+// ── Typography ───────────────────────────────────────────────
+@font-family:       'Sora', system-ui, sans-serif;
+@font-size:         15px;
+@line-height:       1.65;
+@heading-color:     #1C1B22;
+@text-color:        #1C1B22;
+@muted-color:       #6B6880;
+@link-color:        @primary-base;
+@link-hover-color:  @primary-dark;
+
+// ── Inputs ───────────────────────────────────────────────────
+@input-bg:          @control-bg;
+@input-border-color: @border-color;
+@input-border-radius: 50px;
+
+// ── Buttons ──────────────────────────────────────────────────
+@button-border-radius: 50px;
+@button-shadow:        none;
+@button-shadow-active: none;
+
+// ── Header ───────────────────────────────────────────────────
+@header-bg:         #FFFFFF;
+@header-color:      @text-color;
+@header-border-color: @border-color;
+@header-height:     56px;
+
+// ── Hero ─────────────────────────────────────────────────────
+@hero-text-color:   @heading-color;
+@hero-muted-color:  @muted-color;
+
+// ── Discussion list ──────────────────────────────────────────
+@discussion-bg:          #FFFFFF;
+@discussion-bg-active:   @primary-xxlight;
+@discussion-color:       @text-color;
+@discussion-border-radius: @border-radius;
+
+// ── Post / composer ──────────────────────────────────────────
+@post-bg:           #FFFFFF;
+@composer-bg:       #FFFFFF;
+@composer-border-radius: @border-radius;
+
+// ── Tags ─────────────────────────────────────────────────────
+@tag-bg:            @primary-xlight;
+@tag-color:         @primary-xdark;
+@tag-border-radius: 50px;
+
+// ── Avatar ───────────────────────────────────────────────────
+@avatar-border-radius: 50%;
+
+// ── Sidebar ──────────────────────────────────────────────────
+@sidebar-bg:        @control-bg;

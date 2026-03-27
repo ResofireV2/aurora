@@ -1,0 +1,73 @@
+// ── Aurora Cream — Admin Panel Styles ────────────────────────
+//  Lighter touch; admin UI gets the same rounded surfaces and
+//  typography. Accent tints derived from @primary-color just
+//  like the forum stylesheet.
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+
+// Derived tints (same definitions as forum/_variables.less —
+// admin LESS compiles independently so we redeclare them here)
+@primary-xxlight:  mix(white, @primary-color, 92%);
+@primary-xlight:   mix(white, @primary-color, 80%);
+@primary-light:    mix(white, @primary-color, 60%);
+@primary-mid:      mix(white, @primary-color, 20%);
+@primary-base:     @primary-color;
+@primary-dark:     darken(@primary-color, 8%);
+@primary-xdark:    darken(@primary-color, 18%);
+
+body.App--admin {
+    font-family: 'Sora', system-ui, sans-serif;
+    background: #F5F2ED;
+}
+
+.AdminNav {
+    background: #FFFFFF;
+    border-right: 1px solid #EDE9E1;
+
+    .AdminNav-item a {
+        border-radius: 10px;
+        font-weight: 500;
+        color: #6B6880;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover  { background: #F5F1EA; color: #1C1B22; }
+        &.active { background: @primary-xlight; color: @primary-xdark; }
+    }
+}
+
+.AdminPage {
+    .Form-group,
+    .ExtensionPage-settings .Form-group {
+        background: #FFFFFF;
+        border: 1px solid #EDE9E1;
+        border-radius: 16px;
+        padding: 16px 20px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #6B6880;
+    }
+
+    .FormControl {
+        border-radius: 10px;
+        border-color: #EDE9E1;
+        background: #F5F1EA;
+        font-size: 14px;
+
+        &:focus {
+            background: #FFFFFF;
+            border-color: @primary-mid;
+            box-shadow: 0 0 0 3px @primary-xlight;
+        }
+    }
+
+    .Button--primary {
+        border-radius: 50px;
+        font-weight: 600;
+    }
+}

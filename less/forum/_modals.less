@@ -1,0 +1,63 @@
+// ── Modals ───────────────────────────────────────────────────
+
+.Modal-dialog {
+    border-radius: 24px;
+    border: 1px solid @border-color;
+    box-shadow: @box-shadow-modal;
+    overflow: hidden;
+    background: @overlay-bg;
+}
+
+.Modal-header {
+    background: @control-bg;
+    border-bottom: 1px solid @border-color;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    color: @heading-color;
+
+    .Button--icon {
+        border-radius: 10px;
+        color: @muted-color;
+        &:hover { background: @border-color; color: @heading-color; }
+    }
+}
+
+.Modal-body {
+    padding: 20px;
+
+    .Form-group label {
+        font-size: 12px;
+        font-weight: 600;
+        color: @muted-color;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+    }
+
+    .FormControl {
+        border-radius: 12px;
+        border-color: @border-color;
+        background: @control-bg;
+        height: 40px;
+        font-size: 14px;
+
+        &:focus {
+            border-color: @primary-mid;
+            box-shadow: 0 0 0 3px @primary-xlight;
+            background: #FFFFFF;
+        }
+    }
+}
+
+.Modal-footer {
+    border-top: 1px solid @border-color;
+    padding: 12px 20px;
+    background: @control-bg;
+
+    .Button--primary {
+        border-radius: 50px;
+        font-weight: 600;
+        padding: 8px 22px;
+    }
+}

@@ -1,0 +1,64 @@
+// ── Composer ─────────────────────────────────────────────────
+
+.Composer {
+    background: @composer-bg;
+    border-top: 1px solid @border-color;
+    border-radius: @composer-border-radius @composer-border-radius 0 0;
+    box-shadow: 0 -4px 24px rgba(28, 27, 34, 0.06);
+
+    &-handle {
+        background: @border-color;
+        border-radius: 50px;
+        width: 40px;
+        height: 4px;
+        margin: 8px auto 0;
+    }
+
+    &-header {
+        border-bottom: 1px solid @border-color;
+        padding: 10px 16px;
+
+        .Composer-title .FormControl {
+            font-size: 16px;
+            font-weight: 600;
+            color: @heading-color;
+            border: none;
+            background: transparent;
+            padding: 0;
+            &::placeholder { color: @muted-color; font-weight: 400; }
+        }
+    }
+
+    &-body {
+        .TextEditor-editorContainer {
+            min-height: 120px;
+            font-size: 14px;
+            line-height: 1.7;
+            padding: 12px 16px;
+        }
+    }
+
+    &-footer {
+        border-top: 1px solid @border-color;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .Button--primary {
+            border-radius: 50px;
+            padding: 8px 22px;
+            font-weight: 600;
+        }
+
+        .TextEditorButton {
+            border-radius: @border-radius-xs;
+            padding: 5px 8px;
+            color: @muted-color;
+            &:hover {
+                background: @control-bg;
+                color: @primary-base;
+            }
+        }
+    }
+}
