@@ -1,7 +1,6 @@
 import app from 'flarum/forum/app';
-import { extend, override } from 'flarum/common/extend';
+import { extend } from 'flarum/common/extend';
 import Button from 'flarum/common/components/Button';
-import LinkButton from 'flarum/common/components/LinkButton';
 import SessionDropdown from 'flarum/forum/components/SessionDropdown';
 import NotificationsDropdown from 'flarum/forum/components/NotificationsDropdown';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
@@ -22,19 +21,18 @@ app.initializers.add('resofire-aurora', () => {
     });
 
     // ── Tag tiles: replace flat tag list with colour grid ─────
-    // Override navItems to inject our tile grid instead of TagLinkButton rows.
     extend(IndexSidebar.prototype, 'navItems', function (items) {
-        // Remove all tag* items added by flarum/tags (they start with 'tag')
-        const keys = Object.keys(items.items);
+        // Use toObject() — the correct public API — to get all keys
+        const keys = Object.keys(items.toObject());
         keys.forEach((key) => {
-            if (key.startsWith('tag') && key !== 'tags') {
+            // Remove individual tag items (tag1, tag2 etc) and separator
+            // but keep 'tags' link and 'allDiscussions'
+            if ((key.startsWith('tag') && key !== 'tags') || key === 'separator' || key === 'moreTags') {
                 items.remove(key);
             }
         });
-        // Also remove the separator
-        items.remove('separator');
 
-        // Get sorted primary tags
+        // Build the tile grid from primary tags
         const allTags = app.store.all('tags');
         const primaryTags = allTags
             .filter((t) => t.position() !== null && !t.isChild())
@@ -50,7 +48,6 @@ app.initializers.add('resofire-aurora', () => {
             const icon = tag.icon();
             const isActive = currentTag === tag;
             const contrastClass = textContrastClass(color);
-            const count = tag.discussionCount();
 
             return (
                 <a
@@ -64,9 +61,7 @@ app.initializers.add('resofire-aurora', () => {
                 >
                     {icon && <i className={'aurora-tag-tile-icon ' + icon} />}
                     <span className="aurora-tag-tile-name">{tag.name()}</span>
-                    {count !== undefined && (
-                        <span className="aurora-tag-tile-count">{count} discussions</span>
-                    )}
+                    <span className="aurora-tag-tile-count">{tag.discussionCount()} discussions</span>
                 </a>
             );
         });
@@ -101,7 +96,7 @@ app.initializers.add('resofire-aurora', () => {
         }
     });
 
-    // ── HeaderSecondary: move session out, add new discussion ─
+    // ── HeaderSecondary ───────────────────────────────────────
     extend(HeaderSecondary.prototype, 'items', function (items) {
         items.remove('session');
         items.remove('notifications');
