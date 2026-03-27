@@ -1,15 +1,49 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import Button from 'flarum/common/components/Button';
-import HeaderPrimary from 'flarum/forum/components/HeaderPrimary';
+import SessionDropdown from 'flarum/forum/components/SessionDropdown';
+import NotificationsDropdown from 'flarum/forum/components/NotificationsDropdown';
+import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import IndexSidebar from 'flarum/forum/components/IndexSidebar';
 
 export const extenders = [];
 
 app.initializers.add('resofire-aurora', () => {
 
-    // Add "Start a Discussion" to the header primary controls
-    extend(HeaderPrimary.prototype, 'items', function (items) {
+    // ── IndexSidebar ─────────────────────────────────────────
+    extend(IndexSidebar.prototype, 'items', function (items) {
+
+        // Remove the default new discussion button — it lives in the header now
+        items.remove('newDiscussion');
+
+        if (app.session.user) {
+            // Resolve FlagsDropdown from the flags extension if it is installed
+            const FlagsDropdown = flarum.reg.get('flarum-flags', 'forum/components/FlagsDropdown');
+
+            items.add(
+                'userBlock',
+                <div className="aurora-sidebar-user">
+                    <div className="aurora-sidebar-actions">
+                        <NotificationsDropdown state={app.notifications} />
+                        {FlagsDropdown && app.forum.attribute('canViewFlags')
+                            ? <FlagsDropdown state={app.flags} />
+                            : null}
+                    </div>
+                    <SessionDropdown />
+                </div>,
+                50
+            );
+        }
+    });
+
+    // ── HeaderSecondary ───────────────────────────────────────
+    extend(HeaderSecondary.prototype, 'items', function (items) {
+        // Remove items that now live in the sidebar
+        items.remove('session');
+        items.remove('notifications');
+        items.remove('flags');  // added by flarum/flags at priority 15
+
+        // Add Start a Discussion as the rightmost header item
         const canStart = app.forum.attribute('canStartDiscussion') || !app.session.user;
 
         items.add(
@@ -17,7 +51,6 @@ app.initializers.add('resofire-aurora', () => {
             <Button
                 icon="fas fa-edit"
                 className="Button Button--primary aurora-newDiscussion"
-                itemClassName="App-primaryControl"
                 onclick={() => {
                     if (app.session.user) {
                         app.composer
@@ -35,13 +68,8 @@ app.initializers.add('resofire-aurora', () => {
                         : 'core.forum.index.cannot_start_discussion_button'
                 )}
             </Button>,
-            100
+            -10
         );
-    });
-
-    // Remove the button from the sidebar — it now lives in the header
-    extend(IndexSidebar.prototype, 'items', function (items) {
-        items.remove('newDiscussion');
     });
 
 });

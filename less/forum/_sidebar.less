@@ -27,3 +27,72 @@
         // background is inherited from App which we set to @aurora-page-bg
     }
 }
+
+// ── Sidebar user block ───────────────────────────────────────
+
+.aurora-sidebar-user {
+    margin-bottom: 16px;
+    background: @aurora-card;
+    border: 1px solid @aurora-border;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+// Notifications + flags row at the top
+.aurora-sidebar-actions {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-bottom: 1px solid @aurora-border;
+    gap: 2px;
+
+    // Style the dropdown toggle buttons as flat icon buttons
+    .Button--flat,
+    .HeaderDropdown > .Button {
+        border-radius: 10px;
+        padding: 6px 10px;
+        color: @aurora-muted;
+        background: transparent;
+
+        &:hover {
+            background: @aurora-surface;
+            color: @aurora-text;
+        }
+    }
+
+    // Unread badge on notifications
+    .NotificationsDropdown-unread {
+        background: @aurora-accent;
+    }
+}
+
+// Session dropdown below the actions row
+.aurora-sidebar-user > .SessionDropdown,
+.aurora-sidebar-user .Dropdown.SessionDropdown {
+    display: block;
+    width: 100%;
+
+    > .Button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 0;
+        text-align: left;
+        color: @aurora-text;
+        font-weight: 600;
+        background: transparent;
+
+        &:hover {
+            background: @aurora-surface;
+        }
+
+        .Avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+    }
+}
