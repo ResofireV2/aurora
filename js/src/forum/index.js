@@ -5,6 +5,7 @@ import SessionDropdown from 'flarum/forum/components/SessionDropdown';
 import NotificationsDropdown from 'flarum/forum/components/NotificationsDropdown';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import IndexSidebar from 'flarum/forum/components/IndexSidebar';
+import IndexPage from 'flarum/forum/components/IndexPage';
 import DiscussionListItem from 'flarum/forum/components/DiscussionListItem';
 import textContrastClass from 'flarum/common/helpers/textContrastClass';
 
@@ -20,19 +21,66 @@ app.initializers.add('resofire-aurora', () => {
         attrs.style['--aurora-tag-color'] = color || 'var(--primary-color)';
     });
 
-    // ── Tag tiles: replace flat tag list with colour grid ─────
+    // ── Mobile: horizontal tag strip above discussion list ────
+    // Injected into IndexPage.contentItems() at priority 110.
+    // Hidden on tablet-up via LESS — only shows on phone.
+    extend(IndexPage.prototype, 'contentItems', function (items) {
+        const allTags = app.store.all('tags');
+        const primaryTags = allTags
+            .filter((t) => t.position() !== null && !t.isChild())
+            .sort((a, b) => (a.position() ?? 0) - (b.position() ?? 0));
+
+        if (!primaryTags.length) return;
+
+        const params = app.search.state.stickyParams();
+        const currentTag = app.currentTag?.();
+
+        const chips = primaryTags.map((tag) => {
+            const color = tag.color() || 'var(--primary-color)';
+            const isActive = currentTag === tag;
+            const contrastClass = textContrastClass(tag.color());
+
+            return (
+                <a
+                    href={app.route('tag', { ...params, tags: tag.slug() })}
+                    className={'aurora-strip-chip ' + contrastClass + (isActive ? ' active' : '')}
+                    style={{ '--chip-color': color }}
+                    onclick={(e) => {
+                        e.preventDefault();
+                        m.route.set(app.route('tag', { ...params, tags: tag.slug() }));
+                    }}
+                >
+                    <span className="aurora-strip-chip-name">{tag.name()}</span>
+                    <span className="aurora-strip-chip-count">{tag.discussionCount()}</span>
+                </a>
+            );
+        });
+
+        items.add(
+            'mobileTagStrip',
+            <div className="aurora-tag-strip">
+                <a
+                    href={app.route('index', params)}
+                    className={'aurora-strip-chip aurora-strip-chip--all' + (!currentTag ? ' active' : '')}
+                    onclick={(e) => { e.preventDefault(); m.route.set(app.route('index', params)); }}
+                >
+                    <span className="aurora-strip-chip-name">All</span>
+                </a>
+                {chips}
+            </div>,
+            110
+        );
+    });
+
+    // ── Desktop sidebar: tag tiles grid ──────────────────────
     extend(IndexSidebar.prototype, 'navItems', function (items) {
-        // Use toObject() — the correct public API — to get all keys
         const keys = Object.keys(items.toObject());
         keys.forEach((key) => {
-            // Remove individual tag items (tag1, tag2 etc) and separator
-            // but keep 'tags' link and 'allDiscussions'
             if ((key.startsWith('tag') && key !== 'tags') || key === 'separator' || key === 'moreTags') {
                 items.remove(key);
             }
         });
 
-        // Build the tile grid from primary tags
         const allTags = app.store.all('tags');
         const primaryTags = allTags
             .filter((t) => t.position() !== null && !t.isChild())
@@ -96,7 +144,7 @@ app.initializers.add('resofire-aurora', () => {
         }
     });
 
-    // ── HeaderSecondary ───────────────────────────────────────
+    // ── HeaderSecondary: new discussion pill, right side ──────
     extend(HeaderSecondary.prototype, 'items', function (items) {
         items.remove('session');
         items.remove('notifications');

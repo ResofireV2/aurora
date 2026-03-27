@@ -175,3 +175,25 @@
     font-size: 10px;
     font-weight: 600;
 }
+
+// ── Hide desktop-only sidebar elements on phone ───────────────
+@media @phone {
+    // Tag tile grid — desktop only
+    .aurora-tag-grid { display: none; }
+
+    // User block — desktop only (sidebar not visible on phone anyway)
+    .aurora-sidebar-user { display: none; }
+}
+
+// ── Hide Start a Discussion pill from HeaderSecondary on phone ─
+// On phone, HeaderSecondary is not rendered in the header.
+// The newDiscussion button in HeaderPrimary slot becomes the
+// App-primaryControl (top-right icon). We just ensure the pill
+// label is hidden (core already does this via .Button-label).
+@media @phone {
+    .aurora-newDiscussion {
+        border-radius: 10px !important;
+        padding: 8px !important;
+        .Button-label { display: none; }
+    }
+}
