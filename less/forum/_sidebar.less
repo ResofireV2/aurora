@@ -107,3 +107,71 @@
         }
     }
 }
+
+// ── Tag tiles grid ───────────────────────────────────────────
+
+.aurora-tag-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.aurora-tag-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 14px;
+    padding: 12px 12px 10px;
+    background: var(--tile-color, @aurora-accent);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    min-height: 72px;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        transform: scale(1.03);
+        text-decoration: none;
+    }
+
+    &.active {
+        outline: 3px solid @aurora-text;
+        outline-offset: -3px;
+    }
+
+    // Light text on dark backgrounds (class from textContrastClass)
+    &.text-contrast--light {
+        .aurora-tag-tile-name,
+        .aurora-tag-tile-count { color: rgba(255,255,255,0.95); }
+        .aurora-tag-tile-count { color: rgba(255,255,255,0.65); }
+        .aurora-tag-tile-icon { color: rgba(255,255,255,0.3); }
+    }
+
+    // Dark text on light backgrounds
+    &.text-contrast--dark {
+        .aurora-tag-tile-name { color: rgba(0,0,0,0.85); }
+        .aurora-tag-tile-count { color: rgba(0,0,0,0.45); }
+        .aurora-tag-tile-icon { color: rgba(0,0,0,0.15); }
+    }
+}
+
+.aurora-tag-tile-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+}
+
+.aurora-tag-tile-name {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.aurora-tag-tile-count {
+    font-size: 10px;
+    font-weight: 600;
+}
